@@ -65,6 +65,7 @@ body {
 }
 
 .game-board {
+    background-color: #007BA04C;
     border-radius: 50px;
     color: #fff;
     display: grid;
@@ -74,23 +75,22 @@ body {
     justify-items: center;
     max-width: 75vw;
     padding: 50px;
-    background-color: #70b28437;
 }
 
 .scoreboard {
-    background-color: #fff;
+    background-color: #B2B2B221;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    color: #333;
+    color: #FFFFFF;
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    margin: 20px auto;
+    margin: 10px auto;
     max-width: 360px;
-    padding: 24px;
+    padding: 16px;
     text-align: center;
 }
 
 .score {
-    color: #424242;
+    color: #FFFFFF;
     font-size: 20px;
     font-weight: 400;
     margin: 16px 0;
