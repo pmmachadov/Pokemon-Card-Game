@@ -1,0 +1,113 @@
+body {
+    background-image: url('../assets/images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    -moz-transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    -ms-transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    -o-transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    -webkit-transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #eee;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px;
+    padding: 30px;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    width: 11rem;
+}
+
+.card:hover {
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    background-color: #1a73e8;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+}
+
+.card img {
+    -moz-border-radius: 4px;
+    -moz-transition: transform 0.4s;
+    -ms-border-radius: 4px;
+    -ms-transition: transform 0.4s;
+    -o-border-radius: 4px;
+    -o-transition: transform 0.4s;
+    -webkit-border-radius: 4px;
+    -webkit-transition: transform 0.4s;
+    border-radius: 4px;
+    max-width: 100%;
+    transition: transform 0.4s;
+}
+
+.card:hover img {
+    -moz-transform: scale(3);
+    -ms-transform: scale(3);
+    -o-transform: scale(3);
+    -webkit-transform: scale(3);
+    transform: scale(3);
+}
+
+.card p {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.game-board {
+    background-color: #121212;
+    border-radius: 50px;
+    color: #fff;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    justify-content: center;
+    justify-items: center;
+    max-width: 50vw;
+    padding: 50px;
+}
+
+.scoreboard {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #333;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    margin: 20px auto;
+    max-width: 360px;
+    padding: 24px;
+    text-align: center;
+}
+
+.score {
+    color: #424242;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 16px 0;
+    padding: 8px 0;
+}
+
+.current-score span, .best-score span {
+    background-color: #1976d2;
+    border-radius: 20px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    display: inline-block;
+    font-weight: 500;
+    padding: 6px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.score span:hover {
+    background-color: #115293;
+}
