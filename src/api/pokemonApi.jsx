@@ -1,6 +1,6 @@
 export const fetchPokemon = async () => {
     try {
-        const url = "https://pokeapi.co/api/v2/pokemon?limit=12";
+        const url = "https://pokeapi.co/api/v2/pokemon?limit=21";
         const response = await fetch(url);
         const data = await response.json();
         const pokemonData = await Promise.all(
