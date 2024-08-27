@@ -1,10 +1,62 @@
 body {
+    align-items: flex-start;
     background-image: url('../assets/images/background.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
     justify-content: center;
+    margin: 0;
+}
+
+.scoreboard {
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    background: linear-gradient(135deg, rgba(48, 71, 94, 0.9), rgba(89, 106, 126, 0.9));
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    left: 50%;
+    margin-bottom: 40px;
+    max-width: 500px;
+    padding: 16px 32px;
+    position: relative;
+    text-align: center;
+    top: 20px;
+    transform: translateX(-50%);
+}
+
+.score {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 16px 0;
+    position: relative;
+}
+
+.score span {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    display: inline-block;
+    font-weight: 700;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.current-score span {
+    background-color: #2186C9;
+
+    /* Moderno y vibrante rojo coral */
+}
+
+.best-score span {
+    background-color: #09B688;
+
+    /* Moderno y vibrante verde menta */
 }
 
 .card {
@@ -77,37 +129,14 @@ body {
     padding: 50px;
 }
 
-.scoreboard {
-    background-color: #B2B2B221;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    color: #FFFFFF;
-    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-    margin: 10px auto;
-    max-width: 360px;
-    padding: 16px;
-    text-align: center;
-}
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 
-.score {
-    color: #FFFFFF;
-    font-size: 20px;
-    font-weight: 400;
-    margin: 16px 0;
-    padding: 8px 0;
-}
-
-.current-score span, .best-score span {
-    background-color: #1976d2;
-    border-radius: 20px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-    color: #fff;
-    display: inline-block;
-    font-weight: 500;
-    padding: 6px 16px;
-    transition: background-color 0.3s ease;
-}
-
-.score span:hover {
-    background-color: #115293;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
