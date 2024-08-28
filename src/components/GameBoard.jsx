@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Confetti from 'react-confetti';
 import { fetchPokemon } from '../api/pokemonApi';
 import Card from './Card';
 import ScoreBoard from './ScoreBoard';
 import '../styles/styles.css';
 
-const GameBoard = () => {
+const GameBoard = ({ isSoundOn }) => {
     const [cards, setCards] = useState([]);
     const [currentScore, setCurrentScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
@@ -38,15 +39,19 @@ const GameBoard = () => {
 
     const handleCardClick = (id) => {
         if (selectedCards.includes(id)) {
-            loseSound.play().catch((error) => {
-                console.error("Error playing lose sound:", error);
-            });
+            if (isSoundOn) {
+                loseSound.play().catch((error) => {
+                    console.error("Error playing lose sound:", error);
+                });
+            }
             setCurrentScore(0);
             setSelectedCards([]);
         } else {
-            winSound.play().catch((error) => {
-                console.error("Error playing win sound:", error);
-            });
+            if (isSoundOn) {
+                winSound.play().catch((error) => {
+                    console.error("Error playing win sound:", error);
+                });
+            }
             const newScore = currentScore + 1;
             setCurrentScore(newScore);
             setSelectedCards([...selectedCards, id]);
@@ -73,6 +78,10 @@ const GameBoard = () => {
             </div>
         </>
     );
+};
+
+GameBoard.propTypes = {
+    isSoundOn: PropTypes.bool.isRequired,
 };
 
 export default GameBoard;
