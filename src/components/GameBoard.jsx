@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Confetti from 'react-confetti';
 import { fetchPokemon } from '../api/pokemonApi';
 import Card from './Card';
 import ScoreBoard from './ScoreBoard';
@@ -9,8 +10,8 @@ const GameBoard = () => {
     const [currentScore, setCurrentScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
     const [selectedCards, setSelectedCards] = useState([]);
+    const [showConfetti, setShowConfetti] = useState(false);
 
-    // Crear instancias de Audio para cada sonido
     const winSound = new Audio('/sounds/win.wav');
     const loseSound = new Audio('/sounds/lose.wav');
 
@@ -39,27 +40,31 @@ const GameBoard = () => {
         if (selectedCards.includes(id)) {
             loseSound.play().catch((error) => {
                 console.error("Error playing lose sound:", error);
-            }); // Reproducir sonido de derrota
+            });
             setCurrentScore(0);
             setSelectedCards([]);
         } else {
             winSound.play().catch((error) => {
                 console.error("Error playing win sound:", error);
-            }); // Reproducir sonido de victoria
-            setCurrentScore(currentScore + 1);
+            });
+            const newScore = currentScore + 1;
+            setCurrentScore(newScore);
             setSelectedCards([...selectedCards, id]);
-            if (currentScore >= bestScore) {
-                setBestScore(currentScore + 1);
+
+            if (newScore > bestScore) {
+                setBestScore(newScore);
+                setShowConfetti(true);
+                setTimeout(() => setShowConfetti(false), 4000);
             }
         }
 
-        // Animación de volteo de la carta
         setCards(cards.map(card => card.id === id ? { ...card, flipped: !card.flipped } : card));
         setCards(shuffleCards([...cards]));
     };
 
     return (
         <>
+            { showConfetti && <Confetti width={ window.innerWidth } height={ window.innerHeight } /> }
             <ScoreBoard currentScore={ currentScore } bestScore={ bestScore } />
             <div className="game-board">
                 { cards.map((card) => (
