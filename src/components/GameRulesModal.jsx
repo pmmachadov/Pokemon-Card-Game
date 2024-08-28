@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/styles.css';
 
 const GameRulesModal = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,33 +12,13 @@ const GameRulesModal = () => {
         <div>
             <button
                 onClick={ toggleModal }
-                style={ {
-                    padding: '10px 20px',
-                    backgroundColor: '#4CAF50',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '16px'
-                } }
+                className="rules-button"
             >
                 Show Game Rules
             </button>
 
             { isOpen && (
-                <div style={ {
-                    position: 'fixed',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    backgroundColor: 'white',
-                    padding: '20px',
-                    borderRadius: '10px',
-                    boxShadow: '0 5px 15px rgba(0,0,0,0.3)',
-                    zIndex: 1000,
-                    width: '80%',
-                    maxWidth: '500px'
-                } }>
+                <div className="modal">
                     <h2>Game Rules</h2>
                     <p>
                         1. Select a card.
@@ -50,16 +31,7 @@ const GameRulesModal = () => {
                     </p>
                     <button
                         onClick={ toggleModal }
-                        style={ {
-                            padding: '10px 20px',
-                            backgroundColor: '#4CAF50',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            fontSize: '16px',
-                            marginTop: '10px'
-                        } }
+                        className="close-button"
                     >
                         Close
                     </button>

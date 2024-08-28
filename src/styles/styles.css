@@ -142,26 +142,28 @@ body {
 }
 
 .sound-button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    -moz-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
     border: none;
-    outline: none;
+    border-radius: 50%;
+    color: white;
     cursor: pointer;
     font-size: 16px;
-    color: white;
-    transition: background-color 0.3s ease;
+    height: 50px;
     margin: 15px;
+    outline: none;
+    transition: background-color 0.3s ease;
+    width: 50px;
 }
 
 .sound-button.sound-on {
-    background-color: #4CAF50;
-    /* Verde para sonido activado */
+    background-color: #4CAF4FB7;
 }
 
 .sound-button.sound-off {
-    background-color: #B0B0B0;
-    /* Gris para sonido desactivado */
+    background-color: #B0B0B0AD;
 }
 
 .sound-button:focus {
@@ -170,4 +172,52 @@ body {
 
 .sound-button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.rules-button {
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    background-color: #4CAF4FA8;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 15px;
+    padding: 10px 20px;
+}
+
+.modal {
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    left: 50%;
+    max-width: 500px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    z-index: 1000;
+}
+
+.close-button {
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 10px 20px;
 }
