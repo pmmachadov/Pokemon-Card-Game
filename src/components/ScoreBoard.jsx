@@ -1,20 +1,30 @@
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 import '../styles/styles.css'
 
-const ScoreBoard = ({ currentScore, bestScore }) => {
+const ScoreBoard = () => {
+    const [scores, setScores] = useState({ currentScore: 0, bestScore: 0 });
+
+    useEffect(() => {
+        const handleScoreUpdate = (e) => {
+            setScores(e.detail);
+        };
+
+        window.addEventListener('scoreUpdate', handleScoreUpdate);
+        return () => window.removeEventListener('scoreUpdate', handleScoreUpdate);
+    }, []);
+
     return (
         <div className="scoreboard">
-            <h2 className="score current-score">Current Score: <span>{ currentScore }</span></h2>
-            <h2 className="score best-score">Best Score: <span>{ bestScore }</span></h2>
+            <div className="score-item">
+                <span className="score-label">Current</span>
+                <span className="score-value current">{scores.currentScore}</span>
+            </div>
+            <div className="score-item">
+                <span className="score-label">Best</span>
+                <span className="score-value best">{scores.bestScore}</span>
+            </div>
         </div>
-    )
-}
-
-
-ScoreBoard.propTypes = {
-    currentScore: PropTypes.number,
-    bestScore: PropTypes.number
+    );
 };
-
 
 export default ScoreBoard;
