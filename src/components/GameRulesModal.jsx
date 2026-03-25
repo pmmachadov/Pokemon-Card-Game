@@ -1,42 +1,98 @@
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../styles/styles.css';
 
 const GameRulesModal = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const closeButtonRef = useRef(null);
+    const previousActiveElement = useRef(null);
 
     const toggleModal = () => {
-        setIsOpen(!isOpen);
+        setIsOpen((prev) => !prev);
     };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && isOpen) {
+                closeModal();
+            }
+        };
+
+        if (isOpen) {
+            previousActiveElement.current = document.activeElement;
+            document.addEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                closeButtonRef.current?.focus();
+            }, 0);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = '';
+            
+            if (previousActiveElement.current) {
+                previousActiveElement.current.focus();
+            }
+        };
+    }, [isOpen]);
 
     return (
         <div>
             <button
-                onClick={ toggleModal }
+                onClick={toggleModal}
                 className="rules-button"
+                aria-haspopup="dialog"
+                aria-expanded={isOpen}
             >
-                Show Game Rules
+                Game Rules
             </button>
 
-            { isOpen && (
-                <div className="modal">
-                    <h2>Game Rules</h2>
-                    <p>
-                        1. Select a card.
-                        <br />
-                        2. Don't select the same card twice.
-                        <br />
-                        3. Match all the cards to win.
-                        <br />
-                        4. Have fun!
-                    </p>
-                    <button
-                        onClick={ toggleModal }
-                        className="close-button"
+            {isOpen && (
+                <>
+                    <div 
+                        className="modal-overlay" 
+                        onClick={closeModal}
+                        aria-hidden="true"
+                    />
+                    
+                    <div
+                        className="modal"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-labelledby="rules-title"
+                        aria-describedby="rules-description"
                     >
-                        Close
-                    </button>
-                </div>
-            ) }
+                        <h2 id="rules-title">Game Rules</h2>
+                        <div id="rules-description">
+                            <p>
+                                1. 21 cards with random Pokémon are displayed.
+                                <br />
+                                2. Click a card to earn points.
+                                <br />
+                                3. <strong>Watch out!</strong> Cards shuffle after each click.
+                                <br />
+                                4. Don&apos;t select the same card twice or you&apos;ll lose.
+                                <br />
+                                5. Try to get the maximum score (21 points).
+                                <br />
+                                6. Have fun!
+                            </p>
+                        </div>
+                        <button
+                            ref={closeButtonRef}
+                            onClick={closeModal}
+                            className="close-button"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
